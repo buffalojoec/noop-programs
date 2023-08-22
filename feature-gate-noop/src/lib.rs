@@ -1,8 +1,18 @@
-#[cfg(not(feature = "no-entrypoint"))]
-use solana_program::entrypoint;
-use solana_program::{account_info::AccountInfo, entrypoint::ProgramResult, pubkey::Pubkey};
+//! No-op program for feature gate
 
-#[cfg(not(feature = "no-entrypoint"))]
+mod massive_string;  
+
+use {
+    crate::massive_string::MASSIVE_STRING,
+    solana_program::{
+        account_info::AccountInfo,
+        entrypoint,
+        entrypoint::ProgramResult,
+        msg,
+        pubkey::Pubkey,
+    },
+};
+
 entrypoint!(noop);
 
 pub fn noop(
@@ -10,5 +20,9 @@ pub fn noop(
     _accounts: &[AccountInfo],
     _instruction_data: &[u8],
 ) -> ProgramResult {
+    // Have to trick LLVM into sucking the massive string into the final binary
+    if MASSIVE_STRING.contains("noop") {
+        msg!("A wild noop appeared!");
+    }
     Ok(())
 }
