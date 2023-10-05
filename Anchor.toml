@@ -2,7 +2,7 @@
 seeds = false
 skip-lint = false
 [programs.mainnet]
-feature_gate_noop = "2rqZsQBbacRbuAuTSuJ7n49UQT9fzes8RLggFcmB9YuN"
+feature_gate_noop = "37Yr1mVPdfUuy6oC2yPjWtg8xyyVi33TYYqyNQocsAkT"
 
 [registry]
 url = "https://api.apr.dev"
